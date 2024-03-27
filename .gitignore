@@ -1,0 +1,6 @@
+temp_wavs/*
+temp_silent_videos/*
+videos_with_sound_vis/*
+videos/*
+*.json
+*.DS_Store
