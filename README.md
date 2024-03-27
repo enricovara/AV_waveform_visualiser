@@ -10,7 +10,7 @@ A Python script for embedding sound waveform visualization into videos. Useful f
 - **Sound Visualization**: Generates sound wave visualizations for each video frame and integrates them into the video.
 - **Final Composition**: Combines the processed video with the original audio, incorporating the sound visualizations into the final video output.
 
-![Example](videos/example.png "This is a screenshot of an example input.")
+![Example](examples/example.png "This is a screenshot of an example input.")
 
 ## Prerequisites
 
