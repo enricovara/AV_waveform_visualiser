@@ -1,14 +1,16 @@
 # Video Processing Toolkit
 
-This repository contains a Python script for processing videos with embedded sound visualization. The script performs multiple operations, including extracting audio and video streams, downscaling, audio padding, and finally, combining processed video frames with corresponding sound wave visualizations.
+A Python script for embedding sound waveform visualization into videos. Useful for example to select start and end points based on video and audio, for later processing.
 
 ## Features
 
 - **Extract Streams**: Splits the video into separate audio and video streams.
 - **Audio Processing**: Downsamples and pads the audio stream.
 - **Video Processing**: Downsamples video frames and extends them vertically to make space for sound visualization.
-- **Sound Visualization**: Generates sound wave visualizations for each video frame and integrates them into the video.
+- **Sound Visualization**: Generates several sound wave visualizations (at different time-axis zoom levels) for each video frame and integrates them into the video.
 - **Final Composition**: Combines the processed video with the original audio, incorporating the sound visualizations into the final video output.
+
+![Example](examples/example.png "This is a screenshot of an example input.")
 
 ## Prerequisites
 
