@@ -44,9 +44,8 @@ import matplotlib.pyplot as plt
 import shutil
 
 def extract_streams(video_path, output_audio_path, output_video_path):
-    os.system(f"ffmpeg -y -i '{video_path}' -q:a 0 -map a '{output_audio_path}'")
-    os.system(f"ffmpeg -y -i '{video_path}' -an -c:v copy '{output_video_path}'")
-    
+    os.system(f"ffmpeg -y -i '{video_path}' -q:a 0 -map a '{output_audio_path}' > /dev/null 2>&1")
+    os.system(f"ffmpeg -y -i '{video_path}' -an -c:v copy '{output_video_path}' > /dev/null 2>&1")
     
 
 def process_video(video_filename,
@@ -118,6 +117,7 @@ def process_video(video_filename,
         audio_data = audio_data[::audio_ds_factor,0]
     else:
         audio_data = audio_data[::audio_ds_factor]
+    audio_data = (audio_data - np.mean(audio_data))/np.max(np.abs(audio_data))
         
     cap = cv2.VideoCapture(temp_silent_video_path)
     video_frame_rate = cap.get(cv2.CAP_PROP_FPS)
@@ -198,11 +198,11 @@ def process_video(video_filename,
     cap.release()
 
     # Generate video from frames
-    os.system(f"ffmpeg -y -framerate {video_frame_rate} -i {temp_images_dir}/frame_%06d.png -c:v libx264 -pix_fmt yuv420p {temp_silent_video_path}")
+    os.system(f"ffmpeg -y -framerate {video_frame_rate} -i {temp_images_dir}/frame_%06d.png -c:v libx264 -pix_fmt yuv420p {temp_silent_video_path} > /dev/null 2>&1")
     
     # Combine the silent video with the extracted audio
     final_video_path = os.path.join(video_output_dir, base_filename + '_with_sound_vis.mp4')
-    os.system(f"ffmpeg -y -i {temp_silent_video_path} -i {temp_audio_path} -c:v copy -c:a aac -strict experimental {final_video_path}")
+    os.system(f"ffmpeg -y -i {temp_silent_video_path} -i {temp_audio_path} -c:v copy -c:a aac -strict experimental {final_video_path} > /dev/null 2>&1")
     
     # nuke contents of the temp image dir
     shutil.rmtree(temp_images_dir); os.makedirs(temp_images_dir)
@@ -227,9 +227,9 @@ if __name__ == "__main__":
     image_ds_factor = 3
     
     for video_filename in os.listdir(video_input_dir):
-        # if video_filename.endswith('.mp4'):
-        if video_filename == "test_video_with_sound.mp4": # debug
-            print("sp14" in video_filename)
+        if video_filename.endswith('.mp4'):
+        # if video_filename == "output.mp4": # debug
+            print(video_filename)
             process_video(video_filename, frame_audio_durations, frame_extension_pixels,
                           audio_ds_factor, image_ds_factor,
                           video_input_dir, video_output_dir)
