@@ -173,7 +173,7 @@ def process_video(video_filename,
             ax.plot(xx, padded_audio_data[audio_start_sample:audio_end___sample]+2*i*max_audio_ampl, 'k', linewidth=0.6)
             
         ax.set_ylim((-max_audio_ampl, max_audio_ampl*(2*i+1+1.5)))
-        ax.plot([0.5, 0.5], [-max_audio_ampl, max_audio_ampl*(i+1)], color='b', linewidth=0.6)
+        ax.plot([0.5, 0.5], [-max_audio_ampl, max_audio_ampl*(2*i+1)], color='b', linewidth=0.6)
         # ax.axvline(0.5, -max_audio_ampl, max_audio_ampl*(i-1), color='b', linewidth=0.6) # old
         ax.text(0.5, max_audio_ampl*(2*i+1.5), f"time:{current_time:.2f}\nframe:{frame_count:06}", ha='center')
         fig.canvas.draw()
