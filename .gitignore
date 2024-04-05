@@ -6,3 +6,4 @@ videos/*
 *.DS_Store
 video_splitter/audio_start_end/*
 video_splitter/video_start_end/*
+*.zip
