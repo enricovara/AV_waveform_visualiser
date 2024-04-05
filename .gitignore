@@ -4,3 +4,5 @@ videos_with_sound_vis/*
 videos/*
 *.json
 *.DS_Store
+video_splitter/audio_start_end/*
+video_splitter/video_start_end/*

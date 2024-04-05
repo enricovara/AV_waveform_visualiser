@@ -17,12 +17,13 @@ import numpy as np
 import os
 import cv2
 from scipy.io.wavfile import write
+import subprocess
 
 #%% General Parameters
 
 duration = 10  # Duration of the signal in seconds
 pattern_duration = 1  # Duration of each high/low pattern in seconds
-output_subfolder = "videos/"
+output_subfolder = os.path.join("videos")
 
 
 #%% Audio Parameters
@@ -42,7 +43,7 @@ pattern = np.tile(np.concatenate((np.ones(sample_rate * pattern_duration // 2), 
 modulated_sine_wave = sine_wave * pattern
 
 # Save modulated sine wave as a WAV file
-audio_temp_path = output_subfolder+'/modulated_sine_wave.wav'
+audio_temp_path = os.path.join(output_subfolder, 'modulated_sine_wave.wav')
 write(audio_temp_path, sample_rate, modulated_sine_wave.astype(np.float32))
 
 
@@ -51,7 +52,7 @@ fps = 50
 frame_count = duration * fps
 frame_width, frame_height = 1000, 1000
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-video_temp_path = output_subfolder+'pattern_video.mp4'
+video_temp_path = os.path.join(output_subfolder, 'pattern_video.mp4')
 video_writer = cv2.VideoWriter(video_temp_path, fourcc, fps, (frame_width, frame_height))
 
 # Create frames and write to the video
@@ -64,7 +65,7 @@ for i in range(int(frame_count)):
 video_writer.release()
 
 
-video_output_path = output_subfolder+'test_video_with_sound.mp4'
-os.system(f"ffmpeg -y -i {video_temp_path} -i {audio_temp_path} -c:v copy -c:a aac -strict experimental {video_output_path}")
+video_output_path = os.path.join(output_subfolder, 'test_video_with_sound.mp4')
+subprocess.run(['ffmpeg', '-y', '-i', video_temp_path, '-i', audio_temp_path, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental', video_output_path], check=True)
 os.remove(audio_temp_path)
 os.remove(video_temp_path)
