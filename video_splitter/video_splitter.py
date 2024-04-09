@@ -42,7 +42,7 @@ for crop_by in ["audio", "video"]:
                 next(reader, None)  # Skip the header
                 for line in reader:
                     
-                    input_video_name = line[0] + ".mp4"
+                    input_video_name = line[0] + ".MTS"
                     output_video_name = line[1] + "_" + line[2] + "_" + line[3] + "_str" + line[4] + "_snt" + str(line[5]).zfill(2) + ".mp4"
                     
                     if crop_by == "audio":
@@ -58,11 +58,17 @@ for crop_by in ["audio", "video"]:
                     duration = str(np.round(end___time - start_time, 2))
                     print(output_video_name, duration)
                     
-                    subprocess.run([
-                        "ffmpeg", "-y",
-                        "-ss", str(start_time),
-                        "-i", os.path.join(video_folder, input_video_name),
-                        "-t", duration,  # Calculate duration and convert to string
-                        "-c:v", "copy", "-c:a", "copy",
-                        os.path.join(output_folder, output_video_name)
-                    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+                    print(os.path.join(video_folder, input_video_name))
+                    print(duration)
+                    print(os.path.join(output_folder, output_video_name))
+                    
+#                   subprocess.run([
+#                         "ffmpeg", "-y",
+#                         "-ss", str(start_time),
+#                         "-i", os.path.join(video_folder, input_video_name),
+#                         "-t", duration,  # Calculate duration and convert to string
+#                         "-c:v", "copy", "-c:a", "copy",
+#                         os.path.join(output_folder, output_video_name)
+#                     ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+                    ffmpef_command = f'ffmpeg -y -ss {start_time} -i "{os.path.join(video_folder, input_video_name)}" -t {duration} "{os.path.join(output_folder, output_video_name)}"'
+                    os.system(ffmpef_command)
