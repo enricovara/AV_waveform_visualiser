@@ -35,7 +35,6 @@ Please ensure FFmpeg is installed and accessible in your system's PATH for this
 script to function correctly.
 """
 
-
 import os
 import cv2
 import numpy as np
