@@ -227,7 +227,7 @@ if __name__ == "__main__":
     image_ds_factor = 3
     
     for video_filename in os.listdir(video_input_dir):
-        if video_filename.endswith('.mp4'):
+        if video_filename.endswith('.MTS'):
         # if video_filename == "output.mp4": # debug
             print(video_filename)
             process_video(video_filename, frame_audio_durations, frame_extension_pixels,
