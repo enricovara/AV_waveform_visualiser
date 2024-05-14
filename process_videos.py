@@ -170,7 +170,9 @@ def process_video(video_filename,
             yy = padded_audio_data[audio_start_sample:audio_end___sample]+2*i*max_audio_ampl
             if len(yy) < len(xx):
                 yy = np.pad(yy, (0, len(xx) - len(yy)), 'constant', constant_values=(0))
-                print("Padded audio in last frame")
+                print("*** CAREFUL ***\nIt seems you have a few frames at the end of the video with no audio. " \
+                      "I padded the audio with 0s but this may not be a good idea! Please see: " \
+                      "https://forum.videohelp.com/threads/403496-Audio-shorter-than-video-in-MTS-video-files-that-is-split-with-FDR-AX100")
             ax.plot(xx, yy, 'k', linewidth=0.6)
             
         ax.set_ylim((-max_audio_ampl, max_audio_ampl*(2*i+1+1.5)))
