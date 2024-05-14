@@ -167,9 +167,11 @@ def process_video(video_filename,
             
             # Generate plot
             xx = np.linspace(0,1,audio_end___sample-audio_start_sample)
-            
-            # Create figure and axes with specified dimensions
-            ax.plot(xx, padded_audio_data[audio_start_sample:audio_end___sample]+2*i*max_audio_ampl, 'k', linewidth=0.6)
+            yy = padded_audio_data[audio_start_sample:audio_end___sample]+2*i*max_audio_ampl
+            if len(yy) < len(xx):
+                yy = np.pad(yy, (0, len(xx) - len(yy)), 'constant', constant_values=(0))
+                print("Padded audio in last frame")
+            ax.plot(xx, yy, 'k', linewidth=0.6)
             
         ax.set_ylim((-max_audio_ampl, max_audio_ampl*(2*i+1+1.5)))
         ax.plot([0.5, 0.5], [-max_audio_ampl, max_audio_ampl*(2*i+1)], color='b', linewidth=0.6)
@@ -178,9 +180,13 @@ def process_video(video_filename,
         fig.canvas.draw()
             
         # Convert plot to image and insert into the frame
-        plot_image = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8)
-        plot_image = plot_image.reshape(fig.canvas.get_width_height()[::-1] + (3,))
-        # plot_image = cv2.resize(plot_image, (frame.shape[1], frame_extension_pixels)) # old
+        plot_image = np.frombuffer(fig.canvas.buffer_rgba(), dtype=np.uint8)
+        plot_image = plot_image.reshape(fig.canvas.get_width_height()[::-1] + (4,))  # Reshape including alpha
+        plot_image = plot_image[:, :, :3]  # Discard the alpha channel to get back to RGB
+        # https://chatgpt.com/g/g-TzFyCtlOo-coding-buddy/c/51e75f4d-e022-48f3-9a12-bf5ba2d85e5d
+        # plot_image = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8) # DEPRECATED DUE TO tostring_rgb
+        # plot_image = plot_image.reshape(fig.canvas.get_width_height()[::-1] + (3,)) # DEPRECATED DUE TO tostring_rgb
+        # plot_image = cv2.resize(plot_image, (frame.shape[1], frame_extension_pixels)) # older still
         
         extended_frame[frame.shape[0]:, :, :] = plot_image
                 
@@ -224,7 +230,7 @@ if __name__ == "__main__":
     # keep high for speed and lightness, keep low for latency accuracy etc
     audio_ds_factor = 4
     image_ds_factor = 3
-    
+
     for video_filename in os.listdir(video_input_dir):
         if video_filename.endswith('.MTS'):
         # if video_filename == "output.mp4": # debug

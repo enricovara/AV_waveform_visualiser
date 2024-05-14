@@ -33,6 +33,7 @@ for crop_by in ["audio", "video"]:
     output_folder = os.path.join(os.getcwd(), f"{crop_by}_start_end")
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
+
     for file in os.listdir(csv_folder):
         if file.endswith(".csv"):
             with open(file, mode='r', encoding='utf-8') as csv_file:
