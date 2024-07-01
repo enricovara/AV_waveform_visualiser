@@ -23,8 +23,8 @@ import numpy as np
 video_folder = os.path.join(os.path.dirname(os.getcwd()), "videos")
 csv_folder = os.getcwd()
     
-start_buffer = 1
-end___buffer = 1
+start_buffer = 0.5
+end___buffer = 0.5
 
     
 #%%
