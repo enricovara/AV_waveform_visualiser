@@ -1,4 +1,4 @@
-﻿Video filename,Talker,Modaliy,Style,Story,Sentence,New filename,A start,V start,A end,V end,Comments,Problematic,Error Type,Accent,Syllable Number,,,Interference at the end,Interference at the beginning,,,Start,End
+﻿Video filename,Talker,Modality,Style,Story,Sentence,New filename,A start,V start,A end,V end,Comments,Problematic,Error Type,Accent,Syllable Number,,,Interference at the end,Interference at the beginning,,,Start,End
 ,,,,,,,,,,,,,,,,,,,,,,,
 sp01_av_ids_sty_A,sp01,av,ids,1,1,sp01_av_ids_str1_snt01,94.26,94.14,98.84,98.9,A cable is showing during the whole story.,,,American English,15,,,No,#REF!,,,--,--
 sp01_av_ids_sty_A,sp01,av,ids,1,2,sp01_av_ids_str1_snt02,100.38,100.34,103.94,104,A cable is showing during the whole story.,,,American English,12,,,No,No,,,--,--
