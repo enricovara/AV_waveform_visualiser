@@ -519,7 +519,7 @@ sp07_av_ids_sty_A,sp07,av,ids,4,66,sp07_av_ids_str4_snt66,434.7,434.06,437.42,43
 sp07_av_ids_sty_A,sp07,av,ids,4,67,sp07_av_ids_str4_snt67,439.28,438.96,443.32,443.64,mouth slightly open at the end of the sentence,,,British English, 12,,,No,No,,,--,--
 sp07_av_ids_sty_A,sp07,av,ids,4,68,sp07_av_ids_str4_snt68,444.58,444.26,447,447.4,,,,British English, 8,,,No,No,,,--,--
 sp07_av_ids_sty_A,sp07,av,ids,4,69,sp07_av_ids_str4_snt69,449.2,448.48,451.28,451.64,,,,British English, 6,,,No,No,,,--,--
-sp07_av_ids_sty_A,sp07,av,ids,4,70,sp07_av_ids_str4_snt70,473,452.6,454.54,455.04,mouth slightly open at the beginning of the sentence,,,British English, 5,,,No,No,,,--,--
+sp07_av_ids_sty_A,sp07,av,ids,4,70,sp07_av_ids_str4_snt70,453,452.6,454.54,455.04,mouth slightly open at the beginning of the sentence,,,British English, 5,,,No,No,,,--,--
 sp07_av_ids_sty_A,sp07,av,ids,4,71,sp07_av_ids_str4_snt71,456.36,455.7,459.62,460.14,mouth slightly open at the end of the sentence,,,British English, 11,,,No,No,,,--,--
 sp07_av_ids_sty_A,sp07,av,ids,4,72,sp07_av_ids_str4_snt72,461.66,461.1,464.08,465.08,mouth slightly open at the beginning of the sentence,,,British English, 10,,,No,No,,,--,--
 sp07_av_ids_sty_A,sp07,av,ids,4,73,sp07_av_ids_str4_snt73,466,465.62,467.84,468.32,,,,British English, 7,,,No,No,,,--,--
@@ -2145,7 +2145,7 @@ sp12_av_ads_sty_A,sp12,av,ads,3,41,sp12_av_ads_str3_snt41,240.14,238.9,243.48,24
 sp12_av_ads_sty_A,sp12,av,ads,3,42,sp12_av_ads_str3_snt42,245.9,245.36,247.98,248.44,,,,British English,9,,,No,No,,,--,--
 sp12_av_ads_sty_A,sp12,av,ads,3,43,sp12_av_ads_str3_snt43,250,249.4,251.48,251.68,,,,British English,6,,,No,No,,,--,--
 sp12_av_ads_sty_A,sp12,av,ads,3,44,sp12_av_ads_str3_snt44,254,253.12,258.68,259.14,,,,British English,12,,,No,No,,,--,--
-sp12_av_ads_sty_A,sp12,av,ads,3,45,sp12_av_ads_str3_snt45,261.2,260.66,253.38,263.82,,,,British English,8,,,No,No,,,--,--
+sp12_av_ads_sty_A,sp12,av,ads,3,45,sp12_av_ads_str3_snt45,261.2,260.66,263.38,263.82,,,,British English,8,,,No,No,,,--,--
 sp12_av_ads_sty_A,sp12,av,ads,3,46,sp12_av_ads_str3_snt46,266.1,265.24,267.76,268.08,,,,British English,7,,,No,No,,,--,--
 sp12_av_ads_sty_A,sp12,av,ads,3,47,sp12_av_ads_str3_snt47,270.24,269.84,272.92,273.28,,,,British English,7,,,No,No,,,--,--
 sp12_av_ads_sty_A,sp12,av,ads,3,48,sp12_av_ads_str3_snt48,275.3,274.78,278.34,278.7,,,,British English,13,,,No,No,,,--,--
