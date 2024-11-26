@@ -10,21 +10,27 @@ video displaying a pattern synchronized with the audio. The pattern alternates
 between a high and low state in sync with the modulated sine wave. The final
 output is a video file with the modulated sine wave as its audio track.
 
-
 """
 
 import numpy as np
 import os
 import cv2
 from scipy.io.wavfile import write
-import subprocess
+
+# Set the working directory to the directory of this script
+script_directory = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_directory)
 
 #%% General Parameters
 
 duration = 10  # Duration of the signal in seconds
 pattern_duration = 1  # Duration of each high/low pattern in seconds
-output_subfolder = os.path.join("videos")
+output_folder = "videos"
+output_subfolder = os.path.abspath(os.path.join(script_directory, output_folder))
 
+# Ensure output folder exists
+if not os.path.exists(output_subfolder):
+    os.makedirs(output_subfolder)
 
 #%% Audio Parameters
 sample_rate = 48000  # Audio sample rate
@@ -64,8 +70,13 @@ for i in range(int(frame_count)):
 
 video_writer.release()
 
-
 video_output_path = os.path.join(output_subfolder, 'test_video_with_sound.mp4')
-subprocess.run(['ffmpeg', '-y', '-i', video_temp_path, '-i', audio_temp_path, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental', video_output_path], check=True)
+print("cwd", os.getcwd())
+print("video_temp_path", video_temp_path)
+print("audio_temp_path", audio_temp_path)
+print("video_output_path", video_output_path)
+# subprocess.run(['ffmpeg', '-y', '-i', video_temp_path, '-i', audio_temp_path, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental', video_output_path], check=True)
+cmd = f"ffmpeg -y -i \"{video_temp_path}\" -i \"{audio_temp_path}\" -c:v copy -c:a aac -strict experimental \"{video_output_path}\""
+os.system(cmd)
 os.remove(audio_temp_path)
 os.remove(video_temp_path)

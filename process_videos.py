@@ -172,7 +172,10 @@ def process_video(video_filename,
                 yy = np.pad(yy, (0, len(xx) - len(yy)), 'constant', constant_values=(0))
                 print("*** CAREFUL ***\nIt seems you have a few frames at the end of the video with no audio. " \
                       "I padded the audio with 0s but this may not be a good idea! Please see: " \
-                      "https://forum.videohelp.com/threads/403496-Audio-shorter-than-video-in-MTS-video-files-that-is-split-with-FDR-AX100")
+                      "https://forum.videohelp.com/threads/403496-Audio-shorter-than-video-in-MTS-video-files-that-is-split-with-FDR-AX100" \
+                      "and https://www.dvinfo.net/forum/canon-vixia-series-avchd-hdv-camcorders/113083-canon-vixia-hg10-2gb-file-limit-headache.html")
+            elif len(yy) > len(xx):
+                raise RuntimeError("wtf")
             ax.plot(xx, yy, 'k', linewidth=0.6)
             
         ax.set_ylim((-max_audio_ampl, max_audio_ampl*(2*i+1+1.5)))
@@ -233,8 +236,12 @@ if __name__ == "__main__":
     audio_ds_factor = 4
     image_ds_factor = 3
 
-    for video_filename in os.listdir(video_input_dir):
-        if video_filename.endswith('.MTS'):
+    videos_todo = os.listdir(video_input_dir)
+    for video_filename in videos_todo:
+        if video_filename.endswith('.mov'):
+            print(f"will do: {video_filename}")
+    for video_filename in videos_todo:
+        if video_filename.endswith('.mov'):
         # if video_filename == "output.mp4": # debug
             print(video_filename)
             process_video(video_filename, frame_audio_durations, frame_extension_pixels,
